@@ -7,13 +7,8 @@ import java.util.*;
 
 public class StudentManagementSystem {
     static List<Student> students=new ArrayList<>();
-   
-    //Method to add a student to the list and write to the file
-     public static void add(String n,int rn,double g,String c){
-      Student s=new Student(n,rn,g,c);
-      students.add(s);
-      String line=n+","+rn+","+g+","+c;
-      try{
+    public static void writeFile(String line){
+     try{
         FileWriter fw=new FileWriter("Student.txt",true);
         BufferedWriter bw=new BufferedWriter(fw);
         bw.write(line);
@@ -22,15 +17,50 @@ public class StudentManagementSystem {
       }
       catch(Exception e){
         System.out.println("An error occurred while writing to the file.");
-      }  
-     }
-public static void remove(int rollno){
+      } 
+    }
 
+
+    public  static void readFile(File f){
+        try{
+            FileReader fr=new FileReader(f);
+            BufferedReader br=new BufferedReader(fr);
+            String line;
+            while((line=br.readLine())!=null){
+              String[] data=line.split(",");
+              String name=data[0];
+              int rollno=Integer.parseInt(data[1]);
+              double gpa=Double.parseDouble(data[2]);
+              String city=data[3];
+              students.add(new Student(name,rollno,gpa,city));
+            }
+            }
+            catch(Exception e){
+              System.out.println("File not found or an error occurred");
+            }
+}
+   
+    //Method to add a student to the list and write to the file
+     public static void add(Scanner sc){
+      System.out.println("Enter the name,roll no.,gpa and city of the new Student");
+      String name=sc.nextLine();
+      int rollno=sc.nextInt();
+      double gpa=sc.nextDouble();
+      sc.nextLine();
+      String city=sc.nextLine();
+      Student s=new Student(name,rollno,gpa,city);
+      students.add(s);
+      String line=name+","+rollno+","+gpa+","+city;
+      writeFile(line);
+     }
+public static void remove(Scanner sc){
+   System.out.println("Enter the roll no. of the student to be removed");
+      int rollno=sc.nextInt();
     // Remove from list
     students.removeIf(s -> s.getRollno() == rollno);
 
     try{
-        Path path = Paths.get("Student.txt");
+        Path path = Paths.get("Student.txt");//Because Java’s modern file system (java.nio) works with Path objects, not raw strings.Reads file using its location
         List<String> lines = Files.readAllLines(path);
 
         lines.removeIf(line -> {
@@ -42,35 +72,22 @@ public static void remove(int rollno){
             return parts[1].trim().equals(String.valueOf(rollno));
         });
 
-        Files.write(path, lines);
+        Files.write(path, lines);//👉 Writes back to same location
 
     } catch(Exception e){
         e.printStackTrace(); // VERY IMPORTANT
     }
 }
+// public static void update(sc){
+
+// }
+
 
   public static void main(String[] args)  {
-    try{
     File f=new File("Student.txt");
-    FileReader fr=new FileReader(f);
-    BufferedReader br=new BufferedReader(fr);
-    String line;
-    while((line=br.readLine())!=null){
-      String[] data=line.split(",");
-      String name=data[0];
-      int rollno=Integer.parseInt(data[1]);
-      double gpa=Double.parseDouble(data[2]);
-      String city=data[3];
-      students.add(new Student(name,rollno,gpa,city));
-    }
-
-    }
-    catch(Exception e){
-      System.out.println("File not found or an error occurred");
-    }
-
+    readFile(f);
     boolean exit=false;
-     Scanner sc=new Scanner(System.in);
+    Scanner sc=new Scanner(System.in);
     int choice=0;
     while(!exit){
       System.out.println("Choose one of the options to make changes to the student data:-");
@@ -81,39 +98,33 @@ public static void remove(int rollno){
      
     switch(choice){
       case 1:
+      add(sc);
       System.out.println("Added Successfully!");
-      System.out.println("Enter the name,roll no.,gpa and city of the new Student");
-      String name=sc.nextLine();
-      int rollno=sc.nextInt();
-      double gpa=sc.nextDouble();
-      sc.nextLine();
-      String city=sc.nextLine();
-      add(name,rollno,gpa,city);
+      System.out.println("Getting back to main menu...");
       try {
         Thread.sleep(1000);
-        System.out.println("Getting back to main menu...");
+        
       } catch (InterruptedException e) {
         e.printStackTrace();
       }
       break;
       case 2:
       System.out.println("Student info updated");
+      System.out.println("Getting back to main menu...");
       try {
         Thread.sleep(1000);
-        System.out.println("Getting back to main menu...");
+        
       } catch (InterruptedException e) {
         e.printStackTrace();
       }
       break;
       case 3:
-      System.out.println("Enter the roll no. of the student to be removed");
-      int rollnoToRemove=sc.nextInt();
-      remove(rollnoToRemove);
-      
+      remove(sc);
       try {
         System.out.println("Student Removed Successfully!");
+         System.out.println("Getting back to main menu...");
         Thread.sleep(1000);
-        System.out.println("Getting back to main menu...");
+       
       } catch (InterruptedException e) {
         e.printStackTrace();
       }

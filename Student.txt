@@ -1,9 +1,10 @@
 Parth,81,10,Ghaziabad
 Naman,22,10,Ghaziabad
 XYZ,38,3.7,Yuganda
-Gungun,67,8.9,Edinburgh
 parth,454545,9.99,new york
 Rap Monster,7,10.0,Busan
 hh,99,99.0,ghj
 hgg,98,99.0,hgg
-
+ross,48,89.0,gah
+monika,48,9.0,brooklyn
+Rishi,899,7.9,RishiKesh
