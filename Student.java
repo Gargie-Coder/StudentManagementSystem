@@ -23,4 +23,22 @@ public class Student{
   public String getCity() {
     return city;
   }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setGpa(double gpa) {
+        this.gpa = gpa;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+  public void setRollno(int rollno) {
+    this.rollno = rollno;
+  }
+  public String toString(){
+    return name+","+rollno+","+gpa+","+city;
+  }
 }

@@ -1,10 +1,13 @@
-Parth,81,10,Ghaziabad
-Naman,22,10,Ghaziabad
-XYZ,38,3.7,Yuganda
-parth,454545,9.99,new york
-Rap Monster,7,10.0,Busan
-hh,99,99.0,ghj
-hgg,98,99.0,hgg
-ross,48,89.0,gah
-monika,48,9.0,brooklyn
-Rishi,899,7.9,RishiKesh
+Arya ,1,7.9,Ghaziabad
+Astha,2,8.9,Ghaziabad
+Allan,3,6.7,Gwaliar
+Bhoomi,4,9.9,Shamli
+Chirag,5,7.9,Afganisthan
+Darcy,6,8.9,Brooklyn
+Elizabeth,7,9.9,Brooklyn
+Fatima,8,8.9,Noida
+Fazal,9,7.6,Uttrakhand
+Gracy,10,8.5,Universe
+Jannat,11,7.9,Lucknow
+Kavya,12,8.7,Ghaziabad
+Prakrati,13,8.8,Ghaziabad
